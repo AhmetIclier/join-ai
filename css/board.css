@@ -75,6 +75,20 @@ input {
     align-items: baseline;
     margin: 0rem 4rem 0rem 1rem;
     height: calc(100vh - 90px - 100px);
+    overflow-y: auto;
+}
+
+.board-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.board-container::-webkit-scrollbar-track {
+    background: white;
+}
+
+.board-container::-webkit-scrollbar-thumb {
+    background-color: #7b7b7b6c;
+    border-radius: 5px;
 }
 
 .box-task-design {
@@ -117,10 +131,10 @@ input {
 }
 
 .box-overflow {
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     padding-right: 0.4rem;
-    height: calc(100vh - 90px - 160px - 55px);
+    min-height: calc(100vh - 90px - 160px - 55px);
 }
 
 .column-direction h2 {
