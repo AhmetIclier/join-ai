@@ -56,7 +56,7 @@ async function createNewTask() {
         "task-id" : `${uID}`,
         "title" : `${document.getElementById('title-input').value}`,
         "description" : `${document.getElementById('description').value}`,
-        "category" : `${document.querySelector('.pickedCat').innerText}`,
+        "category" : `${document.getElementById('category-input').innerText.replace('\n<', '')}`,
         "catColor" : `${document.querySelector('.pickedCat > div').className}`,
         "assignedTo" : getAssignedContacts(),
         "dueDate": `${document.getElementById('due-date').value}`,
@@ -121,14 +121,14 @@ function getAssignedContacts() {
 /**
  * This function puts the picked color and the name of new category as spaceholde in the category input
  * 
- * @param {string} value - 
+ * @param {string} value - name of the chosen category
  */
 function chosenCategory(value) {
     let color = colorSearch(value);
     let dropdownContent = document.getElementById('category-input');
     dropdownContent.innerHTML = `<div class="pickedCat">${value} <div class="${color}"></div></div><span class="active-dropdown">&lt;</span>`;
     dropdownContent.classList.add('cat-picked');
-    toggleDropdown();
+    // toggleDropdown();
 }
 
 /**
@@ -168,7 +168,7 @@ function saveSubtask() {
 async function validateForm() {
     let title = document.getElementById('title-input');
     let description = document.getElementById('description');
-    let category = document.getElementById('category-input');
+    let category = document.querySelector('.cat-picked').innerText.replace('\n<', '');
     let date = document.getElementById('due-date');
     let titleStat = titleValidation(title);
     let descriptionStat = descriptionValidation(description);
@@ -196,7 +196,7 @@ async function checkIfModal() {
 /**
  * function to show notification with 2 sec timeout
  */
-function showNotification() {
+async function showNotification() {
     let alert = document.getElementById('notification');
     alert.classList.add('active-note');
     setTimeout(() => {

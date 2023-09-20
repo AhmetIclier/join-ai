@@ -219,6 +219,7 @@ function saveNewCat() {
     contactDD.classList.remove('m-top');
     renderCategorys();
     showNewCat();
+    chosenCategory(catTitle);
     cancelInput('cat');
 }
 
